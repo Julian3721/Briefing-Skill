@@ -17,10 +17,22 @@ enforce the window. Do NOT skip yesterday-afternoon stories in favor of
 overnight-only — good newsrooms publish early and slower outlets follow; you
 want the first solid reporting, not just the latest rehash.
 
-**Source-quality > recency within the window.** If the same story is covered
-by a high-quality outlet at 14:00 yesterday and a weaker aggregator at 06:00
-today, cite the 14:00 original. The curator handles stale-topic dedup
-against prior briefings separately — you don't need to filter for it here.
+**Source-trust > recency within the window.** When the same story appears in
+multiple outlets, cite the most trusted one. The user's trust hierarchy:
+
+1. **Preferred — large democratic-aligned legacy outlets**: the sources listed
+   in `section.sources` if provided, otherwise defaults like NYT, WaPo,
+   Reuters, AP, BBC, Tagesschau, Spiegel, Zeit, SZ, FAZ, NPR, The Atlantic,
+   FT, Bloomberg, Nature, Science. Prefer these even if they published hours
+   later than a smaller outlet.
+2. **Acceptable for novel topics only**: smaller, niche, or partisan outlets
+   are fine ONLY if the story does not appear anywhere in the preferred tier.
+   Genuinely new/niche reporting from a credible smaller source > silence.
+3. **Avoid**: tabloid, sponsored content, content farms, obvious propaganda
+   outlets, and aggregators repeating without adding reporting.
+
+The curator handles stale-topic dedup against prior briefings separately —
+you don't need to filter for it here.
 
 **Older than 24h:** skip, unless it's a multi-day breaking story with a
 genuinely new development today (rare — the curator catches this anyway).
