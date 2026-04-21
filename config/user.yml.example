@@ -1,0 +1,41 @@
+# user.yml.example — Template profile.
+# Copy to user.yml and customize, or let BOOTSTRAP / setup.py generate it for you.
+
+name: Your Name
+email: you@example.com
+
+# Output language. Any ISO code the curator understands.
+# Common: de | en | es | fr | it | pt | ja | zh
+output_language: en
+
+# The greeting heading shown at the top of every PDF.
+# Supports {{name}} placeholder.
+greeting_template: "Good morning, {{name}}."
+
+# System locale used when formatting the date.
+# Examples: en_US.UTF-8 | de_DE.UTF-8 | es_ES.UTF-8 | ja_JP.UTF-8
+date_locale: en_US.UTF-8
+
+# Default verbosity per bullet (sections can override).
+#   one-liner          — one sentence, always
+#   normal             — 2–5 sentences with basic context
+#   deep               — 5–15 sentences, explainer style
+#   variable-by-impact — curator decides: short for routine, long for
+#                        major events (recommended if you want headlines
+#                        to be brief but massive stories to be covered
+#                        at full depth)
+verbosity_default: variable-by-impact
+
+# Free-form tone descriptor. Curator uses this verbatim to shape voice.
+# Examples: "editorial-minimalist" | "magazine" | "technical-journal" |
+#           "punchy-newsroom" | "warm-personal" | "witty-irreverent"
+tone: editorial-minimalist
+
+# Style of the closing line (one motivational or reflective sentence).
+#   stoic         — Marcus Aurelius, Seneca, Epictetus style
+#   performance   — Naval, Goggins, Jocko style
+#   philosophical — Nietzsche, Rilke, Hesse style
+#   poetic        — verse, haiku-ish
+#   none          — omit the closing line entirely
+#   <free form>   — any description the curator should follow
+closing_style: stoic

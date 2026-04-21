@@ -1,0 +1,31 @@
+# delivery.yml.example — Where your briefing is delivered.
+# Enable any combination. Git is always needed (the briefing lives in the repo).
+
+git:
+  enabled: true
+  # Update to your fork URL.
+  repo: "https://github.com/YOUR_USER/YOUR_FORK"
+  branch: main
+
+drive:
+  # Upload PDF to a Google Drive folder daily.
+  # Setup: see SETUP.md → "Google Drive" (requires OAuth client + refresh token).
+  # GitHub secrets needed: OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, OAUTH_REFRESH_TOKEN.
+  enabled: false
+  folder_id: ""                       # paste Drive folder ID after creating folder
+
+email:
+  # Send PDF as attachment via Gmail SMTP (also works with other providers —
+  # adjust smtp_host / smtp_port and use app-password or equivalent).
+  # GitHub secret needed: GMAIL_APP_PASSWORD (or SMTP_PASSWORD if renamed).
+  enabled: false
+  sender: ""                          # your Gmail address
+  recipient: ""                       # usually same as sender (self-delivery)
+  smtp_host: smtp.gmail.com
+  smtp_port: 465
+  subject_template: "Daily Briefing for {{name}} — {{date_short}}"
+
+# Future channels — coming soon:
+#   slack:    webhook URL for channel posting
+#   telegram: bot token + chat ID
+#   rss:      generated feed file in Daily/

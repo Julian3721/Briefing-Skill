@@ -1,0 +1,6 @@
+pyyaml>=6.0
+markdown2>=2.4
+weasyprint>=60.0
+google-api-python-client>=2.0
+google-auth>=2.0
+google-auth-oauthlib>=1.0

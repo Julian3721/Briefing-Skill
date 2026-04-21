@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Secrets — never commit OAuth client files
+client_secret*.json
+credentials.json
+token.json
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Local overrides
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp

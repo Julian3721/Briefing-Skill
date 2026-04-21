@@ -1,0 +1,48 @@
+# dedup.yml.example — How the system avoids repeating yesterday's news.
+#
+# This is CORE to the Obsidian architecture: as your briefing archive grows,
+# the curator uses past days as context to produce *differential* updates —
+# new developments get full coverage, stale topics get skipped or
+# summarized with a [[backlink]] to earlier coverage. This scales to
+# thousands of briefings without degrading.
+
+# How far back to scan for duplicate detection.
+# Larger = more context, slower (reads more files).
+# Smaller = faster, but same topic may repeat after the window.
+window_days: 14
+
+# Default policy if a section has no override below.
+#
+#   never-repeat         — once covered, never mentioned again
+#                          (unless cooldown_days re-opens it)
+#   updates-only         — repeat only for substantive new developments;
+#                          reference prior coverage via [[YYYY-MM-DD]] backlink
+#                          (best for ongoing stories — war, election cycle)
+#   free-after-cooldown  — full re-treatment allowed after cooldown_days
+#   no-dedup             — never suppress (markets, weather — fresh daily)
+default_policy: updates-only
+
+per_section_overrides:
+  - section: markets
+    policy: no-dedup          # prices change daily — always fresh
+  - section: sport-main
+    policy: no-dedup          # weekly results — always fresh
+  - section: science
+    policy: never-repeat
+    cooldown_days: 30
+  - section: ai-research
+    policy: never-repeat
+    cooldown_days: 14
+
+topic_cooldown:
+  # After the same topic appears N consecutive days, require substantive
+  # new-information bar to include again. Prevents Groundhog Day feel.
+  max_consecutive_days: 3
+  diff_threshold: substantive_new_development
+
+obsidian:
+  # Obsidian-graph features in generated Markdown.
+  # Enable if you open Daily/ as an Obsidian vault locally.
+  enable_backlinks: true            # adds [[YYYY-MM-DD]] to related coverage
+  enable_frontmatter_tags: true     # YAML tags header for section-based search
+  topic_slug_format: kebab-case     # "iran-ceasefire" in covered_topics list

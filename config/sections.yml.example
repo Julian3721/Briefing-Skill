@@ -1,0 +1,152 @@
+# sections.yml.example — Blank template with extensive examples.
+#
+# The heart of your briefing. Every `section` = one or more research subagents.
+# Add as many as you like. Remove anything you don't want.
+#
+# See EXAMPLES.md for 20+ section ideas across domains.
+#
+# Minimum required fields per section: id, title, filter.
+# All other fields default to sensible values.
+
+sections:
+  # ------ Politics ------
+
+  # Single-lens (one research subagent, fast)
+  - id: politics-national
+    title: "National Politics"
+    sources: []                       # empty = curator picks
+    filter: |
+      Top national political events in the last 24h. No tabloid.
+      Focus on federal policy, legislative actions, executive decisions.
+    bias_mode: single
+    max_bullets: 5
+    length_target: variable-by-impact
+
+  # Multi-lens (three parallel subagents + synthesizer, covers blind spots)
+  - id: politics-international
+    title: "International Politics"
+    sources: []
+    filter: |
+      Significant foreign policy shifts, international agreements, conflicts,
+      sanctions. Global relevance bar — skip bilateral minor news.
+    bias_mode: multi
+    bias_lenses: [western-press, non-western-press]
+    synthesis: balanced-consensus     # or: highlight-conflicts | raw-all
+    max_bullets: 5
+
+  # ------ Tech / AI ------
+
+  - id: ai-models
+    title: "AI — Models & Tools"
+    sources:
+      - openai.com/blog
+      - anthropic.com/news
+      - deepmind.google
+      - github.com/trending
+    filter: |
+      New model releases, developer tools, viral open-source repos
+      (>500 GitHub stars in 24h). Technical — skip mainstream hype.
+    bias_mode: single
+    max_bullets: 5
+
+  - id: ai-research
+    title: "AI Research"
+    sources: [arxiv.org/list/cs.LG/recent, paperswithcode.com]
+    filter: |
+      Only genuine research breakthroughs. Skip routine papers.
+    bias_mode: single
+    max_bullets: 3
+    length_target: deep
+
+  # ------ Finance / Markets ------
+
+  - id: markets
+    title: "Markets"
+    sources: [bloomberg.com, reuters.com/markets, ft.com]
+    filter: |
+      Major index movements (S&P, NASDAQ, your local equivalent).
+      Mag7 highlights. BTC/ETH if material. One compact paragraph.
+    bias_mode: single
+    max_bullets: 4
+    length_target: one-liner
+
+  # ------ Local News (hyperlocal, unusual events) ------
+
+  - id: local
+    title: "Local — Your Country"
+    sources: []
+    filter: |
+      Non-political nationwide news of broad public interest.
+      Major accidents, cultural moments, viral stories, unusual events
+      (e.g. "whale sighted in city harbor"). Skip crime-blotter.
+    bias_mode: single
+    max_bullets: 3
+
+  # ------ Science ------
+
+  - id: science
+    title: "Science"
+    sources: [nature.com, science.org, quantamagazine.org]
+    filter: |
+      Only breakthroughs of global relevance — fusion, quantum, major
+      medical advances, astrophysics. Happens rarely.
+    bias_mode: single
+    max_bullets: 3
+    length_target: deep
+
+  # ------ Sports (grouped via parent) ------
+
+  - id: sport-main
+    title: "Football"
+    parent: sport
+    sources: []
+    filter: |
+      List your favorite teams and leagues here.
+      Results only — skip player drama and tactical analysis.
+    bias_mode: single
+    max_bullets: 5
+    length_target: one-liner
+
+  # ------ Hobbies / niche interests ------
+
+  - id: coffee
+    title: "Coffee & Espresso"
+    parent: hobbies
+    sources: [home-barista.com, reddit.com/r/espresso]
+    filter: |
+      New prosumer machines, grinders, accessories. Respected reviews only.
+    bias_mode: single
+    max_bullets: 3
+
+  - id: chess
+    title: "Chess — Elite Tournaments"
+    parent: hobbies
+    sources: [chess.com, fide.com]
+    filter: |
+      Only world-elite tournaments (Carlsen, Nakamura, Ding, etc.).
+      Announce 2–3 days before start. Daily results during events.
+    bias_mode: single
+    max_bullets: 3
+
+  # ------ Builder / Indie-hacker inspiration ------
+
+  - id: founder-idea
+    title: "Founder Idea of the Day"
+    sources: [producthunt.com, news.ycombinator.com/show, reddit.com/r/SideProject]
+    filter: |
+      Max 1 idea per day. Criteria: practical everyday utility,
+      AI-enabled (not just "AI-tool for X"), concrete problem/solution,
+      not already a big player.
+    bias_mode: single
+    max_bullets: 1
+    length_target: normal
+
+  # ------ Placeholder for "whatever else interests you" ------
+  #
+  # - id: custom-anything
+  #   title: "My Obsession Today"
+  #   filter: |
+  #     Describe in plain language what you want researched.
+  #     The curator will figure out sources. Example:
+  #     "New Formula 1 regulation changes, only paddock-insider
+  #      news, skip fluff commentary."

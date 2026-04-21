@@ -1,0 +1,54 @@
+# design.yml.example — PDF visual styling template.
+# Copy to design.yml and customize.
+
+layout_preset: editorial-minimalist   # name reference, informational only
+
+fonts:
+  body: "Inter"                       # any Google Font or system font
+  heading: "Inter"
+  mono: "JetBrains Mono"
+
+palette:
+  background: "#ffffff"
+  text_primary: "#0a0a0a"
+  text_muted: "#737373"
+  accent: "#b45309"                   # amber-700 — use any brand color
+  divider: "#e5e5e5"
+
+page:
+  size: A4                            # A4 | Letter | Legal
+  margin_top: 60pt
+  margin_side: 56pt
+
+typography:
+  h1: {size: 30pt, weight: 800, tracking: -0.025em}
+  h2: {size: 13pt, weight: 800, uppercase: true, tracking: 0.1em}
+  h3: {size: 10pt, weight: 700, uppercase: true, tracking: 0.08em}
+  body: {size: 10pt, line_height: 1.6}
+  link: {size: 7.5pt, font: mono, color: accent, underline: true}
+  closing_quote: {size: 9.5pt, italic: true, align: right, color: muted}
+
+bullet:
+  char: "▸"                           # ▸ ● ◆ → — or any symbol/emoji
+  color: accent
+
+accent_rule_after_h2:
+  width: 36pt
+  height: 2pt
+
+# -- Style recipe ideas --
+#
+# NYT-editorial (default):
+#   fonts all Inter, accent amber, small mono URLs, uppercase h2
+#
+# Magazine (Monocle/Gentlewoman vibe):
+#   heading Fraunces, body Inter, wider margins, numbered sections
+#
+# Swiss-grid (Bauhaus):
+#   heading Inter Bold, body Helvetica, 8pt strict grid, no accent color
+#
+# Technical journal:
+#   body JetBrains Mono, reduced hierarchy, no color, simulated LaTeX feel
+#
+# Brutalist:
+#   oversized h1 (60pt+), high contrast, exposed layout, raw look
